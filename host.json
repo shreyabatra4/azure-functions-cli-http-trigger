@@ -1,7 +1,5 @@
 {
   "version": "2.0",
-<<<<<<< HEAD
-=======
   "logging": {
     "applicationInsights": {
       "samplingSettings": {
@@ -15,7 +13,6 @@
         "maxConcurrentCalls": 1
     }
   },
->>>>>>> origin/main
   "extensionBundle": {
     "id": "Microsoft.Azure.Functions.ExtensionBundle",
     "version": "[4.*, 5.0.0)"
