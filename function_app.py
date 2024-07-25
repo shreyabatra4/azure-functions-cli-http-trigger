@@ -4,16 +4,15 @@ import time
 
 app = func.FunctionApp()
 
-@app.function_name(name="HttpTrigger1")
-@app.route(route="req")
-def main(req):
+@app.function_name(name="http_get")
+@app.route(route="http_get")
+def main(req: func.HttpRequest) -> func.HttpResponse:
     user = req.params.get("user")
     return f"Hello, {user}!"
 
-# @app.service_bus_queue_trigger(arg_name="azservicebus", queue_name="%ServiceBusQueueName%",
-#                                connection="ServiceBusConnection") 
-# def servicebus_queue_trigger(azservicebus: func.ServiceBusMessage):
-#     logging.info('Python ServiceBus Queue trigger start processing a message: %s',
-#                 azservicebus.get_body().decode('utf-8'))
-#     time.sleep(30)
-#     logging.info('Python ServiceBus Queue trigger end processing a message')
+@app.function_name(name="http_post")
+@app.route(route="http_post")
+def main(req: func.HttpRequest) -> func.HttpResponse:
+    req_body = req.get_json()
+    name = req_body.get('name')
+    return func.HttpResponse(f"Hello, {name}!")
